@@ -1,0 +1,12 @@
+{
+  "name": "gcat-postman-exporter",
+  "version": "1.0.0",
+  "description": "Export GCAT Postman workspace to JSON for VS Code",
+  "main": "export.js",
+  "scripts": {
+    "export": "node export.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
