@@ -1,0 +1,26 @@
+meta {
+  name: HCE Card Emulation — READ RECORD
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{jpos_host}}/hce/apdu
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "apdu_command": "READ_RECORD",
+    "pan": "{{gcat_pan}}"
+  }
+}
+
+tests {
+  test("READ RECORD 9000", function() {
+    expect(res.status).to.equal(200);
+    expect(res.body.sw1sw2).to.equal("9000");
+    expect(res.body.tag_5A).to.equal("9000002500000001");
+  });
+}
