@@ -1,0 +1,25 @@
+meta {
+  name: HCE Card Emulation — APDU SELECT
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{jpos_host}}/hce/apdu
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "apdu_command": "SELECT_AID",
+    "pan": "{{gcat_pan}}"
+  }
+}
+
+tests {
+  test("SELECT AID 9000", function() {
+    expect(res.status).to.equal(200);
+    expect(res.body.sw1sw2).to.equal("9000");
+  });
+}
