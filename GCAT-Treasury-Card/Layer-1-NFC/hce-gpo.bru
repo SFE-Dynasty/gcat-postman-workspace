@@ -1,0 +1,25 @@
+meta {
+  name: HCE Card Emulation — GET PROCESSING OPTIONS
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{jpos_host}}/hce/apdu
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "apdu_command": "GET_PROCESSING_OPTIONS",
+    "pan": "{{gcat_pan}}"
+  }
+}
+
+tests {
+  test("GPI 9000", function() {
+    expect(res.status).to.equal(200);
+    expect(res.body.sw1sw2).to.equal("9000");
+  });
+}
