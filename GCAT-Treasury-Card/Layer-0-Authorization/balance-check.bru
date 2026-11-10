@@ -1,0 +1,17 @@
+meta {
+  name: GCAT Balance Check — Horizon USD:GCVDS3
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://horizon.stellar.org/accounts/{{gcat_public}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("account found", function() {
+    expect(res.status).to.equal(200);
+  });
+}
