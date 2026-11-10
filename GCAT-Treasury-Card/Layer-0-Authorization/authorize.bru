@@ -1,0 +1,28 @@
+meta {
+  name: ISO 8583 Authorization Request
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{jpos_host}}/authorize
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "field2_pan": "{{gcat_pan}}",
+    "field4_amount": 1000,
+    "field11_stan": "000001",
+    "field49_currency": "840",
+    "uetr_parent": "{{uetr_parent}}"
+  }
+}
+
+tests {
+  test("Field 39: 00 Approved", function() {
+    expect(res.status).to.equal(200);
+    expect(res.body.field39_response_code).to.equal("00");
+  });
+}
