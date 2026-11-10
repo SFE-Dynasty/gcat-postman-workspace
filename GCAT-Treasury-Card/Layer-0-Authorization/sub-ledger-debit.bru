@@ -1,0 +1,21 @@
+meta {
+  name: Sub-Ledger Debit — TRLQ Settlement
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://fiduciary-clearing-engine.onrender.com/v1/debit
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "account": "{{gcat_public}}",
+    "amount": "{{transaction_amount_usd}}",
+    "currency": "USD",
+    "uetr": "{{uetr_parent}}",
+    "settlement_tx": "{{settlement_tx_hash}}"
+  }
+}
